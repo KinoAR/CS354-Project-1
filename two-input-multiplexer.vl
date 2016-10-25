@@ -1,0 +1,31 @@
+module two_input_mulitplexer(A, B, Z, C);
+  input A, B, Z;
+  output C;
+  wire w1, w2;
+  and gate1(w1, A, ~Z);
+  and gate2(w2, B, Z);
+  or gate3(C, w1, w2);
+endmodule
+
+module test_two_input_multi;
+  reg A, B, Z;
+  wire w1;
+  two_input_mulitplexer two_input_m(A, B, Z, w1);
+
+  initial
+    begin
+      $display("Time A B Z C");
+      $display("----------");
+            A=0; B=0; Z=0;
+        #10 A=0; B=0; Z=1;
+        #10 A=0; B=1; Z=0;
+        #10 A=0; B=1; Z=1;
+        #10 A=1; B=0; Z=0;
+        #10 A=1; B=0; Z=1;
+        #10 A=1; B=1; Z=0;
+        #10 A=1; B=1; Z=1;
+    end
+
+    initial
+      $monitor("%4d %b %b %b %b", $time, A, B, Z, w1);
+endmodule

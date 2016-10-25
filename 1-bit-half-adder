@@ -1,0 +1,47 @@
+#! /c/iverilog/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_00B43550 .scope module, "test_halfadder" "test_halfadder" 2 8;
+ .timescale 0 0;
+v00B48350_0 .var "A", 0 0;
+v00B483A8_0 .var "B", 0 0;
+v00B48400_0 .net "w1", 0 0, L_00B48BF8; 1 drivers
+v00B48458_0 .net "w2", 0 0, L_00B48B18; 1 drivers
+S_00B44088 .scope module, "halfadder1" "onebit_halfadder" 2 11, 2 1, S_00B43550;
+ .timescale 0 0;
+L_00B48BF8 .functor XOR 1, v00B48350_0, v00B483A8_0, C4<0>, C4<0>;
+L_00B48B18 .functor AND 1, v00B48350_0, v00B483A8_0, C4<1>, C4<1>;
+v00B492B8_0 .net "A", 0 0, v00B48350_0; 1 drivers
+v00B44110_0 .net "B", 0 0, v00B483A8_0; 1 drivers
+v00B44168_0 .alias "C", 0 0, v00B48400_0;
+v00B482F8_0 .alias "D", 0 0, v00B48458_0;
+    .scope S_00B43550;
+T_0 ;
+    %vpi_call 2 14 "$display", "Time\011A\011B\011Sum\011Carry";
+    %vpi_call 2 15 "$display", "--------------------------------------";
+    %set/v v00B48350_0, 0, 1;
+    %set/v v00B483A8_0, 0, 1;
+    %delay 10, 0;
+    %set/v v00B48350_0, 0, 1;
+    %set/v v00B483A8_0, 1, 1;
+    %delay 10, 0;
+    %set/v v00B48350_0, 1, 1;
+    %set/v v00B483A8_0, 0, 1;
+    %delay 10, 0;
+    %set/v v00B48350_0, 1, 1;
+    %set/v v00B483A8_0, 1, 1;
+    %end;
+    .thread T_0;
+    .scope S_00B43550;
+T_1 ;
+    %vpi_call 2 23 "$monitor", "%4d\011%b\011%b\011%b\011%b", $time, v00B48350_0, v00B483A8_0, v00B48400_0, v00B48458_0;
+    %end;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 3;
+    "N/A";
+    "<interactive>";
+    "1-bit-half-adder.vl";

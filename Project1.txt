@@ -1,0 +1,49 @@
+Building and testing basic combinational circuits using Verilog HDL
+
+Description: Build and test the following circuits using Verilog HDL.
+
+1. 3-input majority function.
+
+2. Conditional inverter (see the table below). Do NOT use XOR gates for the implementation.
+
+    x	  y	Output
+  0	 	  y
+  1	 	  y'
+ 
+
+3. Two-input multiplexer (see truth table below: x,y - data inputs, z - control input).
+
+    z	Output
+  0	  x
+  1	  y
+ 
+
+4. 1-bit half adder.
+
+5. 1-bit full adder by cascading two half adders.
+
+6. 1-bit full adder directly (as in fig. 4.7 in the text).
+
+7. 4-bit adder/subtractor with overflow detection by cascading four 1-bit full adders (see fig. 4.13 in the text).
+
+Requirements:
+
+Create truth tables and use maps for simplification (not needed for circuits 5  and 7).
+Create a module for each circuit, instantiate it in a test module and test it.
+The hierarchical circuits (5 and 7) should use instances of their constituent modules.
+For testing use  all combinations of input values and show the corresponding output for all circuits except for the 4-bit adder/subtractor.
+For the 4-bit adder/subtractor include all combinations of positive, negative and 0 inputs, as well as all overflow situations and show the inputs/outputs both in binary and signed decimal.
+Documentation:
+
+Write a project report containing for each circuit:
+
+Short text description.
+Truth table and map for the functions that can be simplified (not needed for the hierarchical implementations 5 and 7).
+Gate level circuit diagram (use blocks for the hierarchical circuits) with components and wires labeled with the names as used in the Verilog code.
+HDL source code (included as text, not image).
+Verilog output showing the test results as explained in the requirements.
+Extra credit (up to 2 points): Implement an ABCD-to-seven-segment decoder following the description of problem 4.9 (page 183) with the modification that the six invalid combinations of the input should be used as don't care conditions. Reuse components if possible to minimize the circuit. Test the circuit with all decimal digits. Include in the report the maps for all functions, the gate level diagrams, and the Verilog code and the test results.
+
+Submission:
+
+Submit a single report file (MS Word or PDF format) as an attachment.

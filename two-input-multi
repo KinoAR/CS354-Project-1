@@ -1,0 +1,72 @@
+#! /c/iverilog/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_00BA3550 .scope module, "test_two_input_multi" "test_two_input_multi" 2 10;
+ .timescale 0 0;
+v00BAECA8_0 .var "A", 0 0;
+v00BAED00_0 .var "B", 0 0;
+v00BAED58_0 .var "Z", 0 0;
+v026A1260_0 .net "w1", 0 0, L_00BAEEC8; 1 drivers
+S_00BA4210 .scope module, "two_input_m" "two_input_mulitplexer" 2 13, 2 1, S_00BA3550;
+ .timescale 0 0;
+L_00BA4348 .functor AND 1, v00BAECA8_0, L_00BAEDB0, C4<1>, C4<1>;
+L_00BAEDB0 .functor NOT 1, v00BAED58_0, C4<0>, C4<0>, C4<0>;
+L_00BAEE58 .functor AND 1, v00BAED00_0, v00BAED58_0, C4<1>, C4<1>;
+L_00BAEEC8 .functor OR 1, L_00BA4348, L_00BAEE58, C4<0>, C4<0>;
+v00BA4298_0 .net "A", 0 0, v00BAECA8_0; 1 drivers
+v00BA42F0_0 .net "B", 0 0, v00BAED00_0; 1 drivers
+v00BA90D8_0 .alias "C", 0 0, v026A1260_0;
+v00BA9130_0 .net "Z", 0 0, v00BAED58_0; 1 drivers
+v00BA9188_0 .net *"_s0", 0 0, L_00BAEDB0; 1 drivers
+v00BA91E0_0 .net "w1", 0 0, L_00BA4348; 1 drivers
+v00BA9238_0 .net "w2", 0 0, L_00BAEE58; 1 drivers
+    .scope S_00BA3550;
+T_0 ;
+    %vpi_call 2 17 "$display", "Time A B Z C";
+    %vpi_call 2 18 "$display", "----------";
+    %set/v v00BAECA8_0, 0, 1;
+    %set/v v00BAED00_0, 0, 1;
+    %set/v v00BAED58_0, 0, 1;
+    %delay 10, 0;
+    %set/v v00BAECA8_0, 0, 1;
+    %set/v v00BAED00_0, 0, 1;
+    %set/v v00BAED58_0, 1, 1;
+    %delay 10, 0;
+    %set/v v00BAECA8_0, 0, 1;
+    %set/v v00BAED00_0, 1, 1;
+    %set/v v00BAED58_0, 0, 1;
+    %delay 10, 0;
+    %set/v v00BAECA8_0, 0, 1;
+    %set/v v00BAED00_0, 1, 1;
+    %set/v v00BAED58_0, 1, 1;
+    %delay 10, 0;
+    %set/v v00BAECA8_0, 1, 1;
+    %set/v v00BAED00_0, 0, 1;
+    %set/v v00BAED58_0, 0, 1;
+    %delay 10, 0;
+    %set/v v00BAECA8_0, 1, 1;
+    %set/v v00BAED00_0, 0, 1;
+    %set/v v00BAED58_0, 1, 1;
+    %delay 10, 0;
+    %set/v v00BAECA8_0, 1, 1;
+    %set/v v00BAED00_0, 1, 1;
+    %set/v v00BAED58_0, 0, 1;
+    %delay 10, 0;
+    %set/v v00BAECA8_0, 1, 1;
+    %set/v v00BAED00_0, 1, 1;
+    %set/v v00BAED58_0, 1, 1;
+    %end;
+    .thread T_0;
+    .scope S_00BA3550;
+T_1 ;
+    %vpi_call 2 30 "$monitor", "%4d %b %b %b %b", $time, v00BAECA8_0, v00BAED00_0, v00BAED58_0, v026A1260_0;
+    %end;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 3;
+    "N/A";
+    "<interactive>";
+    ".\two-input-multiplexer.vl";
